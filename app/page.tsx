@@ -1,4 +1,5 @@
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function Home() {
   return (
@@ -26,18 +27,15 @@ export default function Home() {
           <div className="flex items-center gap-5 pt-2">
             <SocialLink
               href="https://github.com/trevor-dev-johnson"
-              label="GitHub"
-              icon={<FaGithub size={18} />}
+              icon={<FaGithub size={20} />}
             />
             <SocialLink
               href="https://www.linkedin.com/in/trevor-johnson-dev/"
-              label="LinkedIn"
-              icon={<FaLinkedin size={18} />}
+              icon={<FaLinkedin size={20} />}
             />
             <SocialLink
               href="https://x.com/whizzkee"
-              label="X"
-              icon={<FaTwitter size={18} />}
+              icon={<FaXTwitter size={20} />}
             />
           </div>
         </div>
@@ -46,31 +44,20 @@ export default function Home() {
   );
 }
 
-function SocialLink({
-  href,
-  label,
-  icon,
-}: {
-  href: string;
-  label: string;
-  icon: React.ReactNode;
-}) {
+function SocialLink({ href, icon }: { href: string; icon: React.ReactNode }) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
       className="
-        group flex items-center gap-2 rounded-md px-3 py-2
+        group flex items-center justify-center rounded-md p-2
         text-neutral-300 transition
         hover:text-white hover:bg-neutral-900
         hover:-translate-y-0.5
       "
     >
-      <span className="text-neutral-400 group-hover:text-white transition">
-        {icon}
-      </span>
-      <span>{label}</span>
+      <span className="transition group-hover:text-white">{icon}</span>
     </a>
   );
 }
