@@ -27,14 +27,17 @@ export default function Home() {
           <div className="flex items-center gap-5 pt-2">
             <SocialLink
               href="https://github.com/trevor-dev-johnson"
+              ariaLabel="GitHub profile"
               icon={<FaGithub size={20} />}
             />
             <SocialLink
               href="https://www.linkedin.com/in/trevor-johnson-dev/"
+              ariaLabel="LinkedIn profile"
               icon={<FaLinkedin size={20} />}
             />
             <SocialLink
               href="https://x.com/whizzkee"
+              ariaLabel="X profile"
               icon={<FaXTwitter size={20} />}
             />
           </div>
@@ -44,20 +47,32 @@ export default function Home() {
   );
 }
 
-function SocialLink({ href, icon }: { href: string; icon: React.ReactNode }) {
+function SocialLink({
+  href,
+  icon,
+  ariaLabel,
+}: {
+  href: string;
+  icon: React.ReactNode;
+  ariaLabel: string;
+}) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
+      aria-label={ariaLabel}
       className="
         group flex items-center justify-center rounded-md p-2
         text-neutral-300 transition
         hover:text-white hover:bg-neutral-900
         hover:-translate-y-0.5
+        focus:outline-none focus:ring-2 focus:ring-indigo-500/60
       "
     >
-      <span className="transition group-hover:text-white">{icon}</span>
+      <span className="transition group-hover:text-white group-hover:scale-110">
+        {icon}
+      </span>
     </a>
   );
 }
