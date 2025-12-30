@@ -26,7 +26,7 @@ export default function Home() {
             <p className="text-neutral-400 text-lg leading-relaxed">
               Backend engineer specializing in{" "}
               <span className="text-neutral-200">Python</span> and{" "}
-              <span className="text-neutral-200">Distributed Systems</span>.
+              <span className="text-neutral-200">APIs & Backend Systems</span>.
               Building resilient APIs and data pipelines with a focus on
               type-safety and architectural integrity.
             </p>
@@ -89,14 +89,14 @@ export default function Home() {
         <section className="space-y-12">
           <div className="space-y-2">
             <h2 className="text-xs font-mono uppercase tracking-widest text-neutral-500">
-              Selected Systems
+              Projects
             </h2>
           </div>
 
           <div className="space-y-16">
             <Project
               title="TaskForge — Domain-Driven API"
-              description="A production-ready task management backend. Implements Clean Architecture patterns to decouple business logic from external dependencies. Features custom middleware for request validation and global error handling."
+              description="A backend designed with production architecture principles. Implements Clean Architecture patterns to decouple business logic from external dependencies. Features custom middleware for request validation and global error handling."
               tech={["FastAPI", "PostgreSQL", "Pytest", "Docker"]}
               link="https://github.com/trevor-dev-johnson/taskforge"
               highlight="Architecture: Repository Pattern & DI"
