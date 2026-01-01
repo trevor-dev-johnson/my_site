@@ -8,6 +8,21 @@ import {
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
+type ProjectSpec = {
+  label: string;
+  value: string;
+};
+
+type ProjectProps = {
+  method: "SERVICE" | "ASYNC" | "CRON";
+  path: string;
+  title: string;
+  description: string;
+  specs: ProjectSpec[];
+  tech: string[];
+  link: string;
+};
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-neutral-950 text-neutral-100 selection:bg-emerald-500/30">
@@ -65,7 +80,7 @@ export default function Home() {
 
         <section className="space-y-8">
           <h2 className="text-xs font-mono uppercase tracking-widest text-neutral-500 flex items-center gap-2">
-            <span className="h-px w-8 bg-neutral-800" /> core_capabilities
+            <span className="h-px w-8 bg-neutral-800" /> technical stack
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-10 gap-x-12">
@@ -99,7 +114,7 @@ export default function Home() {
 
         <section className="space-y-16">
           <h2 className="text-xs font-mono uppercase tracking-widest text-neutral-500 flex items-center gap-2">
-            <span className="h-px w-8 bg-neutral-800" /> system_endpoints
+            <span className="h-px w-8 bg-neutral-800" /> projects
           </h2>
 
           <div className="space-y-24">
@@ -183,7 +198,15 @@ function StackItem({
   );
 }
 
-function Project({ method, path, title, description, specs, tech, link }: any) {
+function Project({
+  method,
+  path,
+  title,
+  description,
+  specs,
+  tech,
+  link,
+}: ProjectProps) {
   return (
     <div className="group grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
       <div className="md:col-span-4 space-y-4">
@@ -223,7 +246,7 @@ function Project({ method, path, title, description, specs, tech, link }: any) {
         </p>
 
         <div className="grid grid-cols-2 gap-4 border-t border-neutral-800 pt-6">
-          {specs.map((spec: any) => (
+          {specs.map((spec) => (
             <div key={spec.label}>
               <p className="text-[10px] font-mono text-neutral-600 uppercase tracking-tighter">
                 {spec.label}
