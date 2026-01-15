@@ -124,9 +124,12 @@ export default function Home() {
               title="TaskForge Architecture"
               description="Backend designed around clear separation of concerns. Business logic is isolated from storage through repositories, with centralized validation and consistent error handling."
               specs={[
-                { label: "Focus", value: "Clean Architecture Principles" },
-                { label: "Validation", value: "Pydantic Models" },
-                { label: "Workflow", value: "Service / Repository Layers" },
+                {
+                  label: "Focus",
+                  value: "Clean Architecture & Domain Boundaries",
+                },
+                { label: "Execution", value: "Synchronous API Services" },
+                { label: "State", value: "Relational Persistence" },
               ]}
               tech={["FastAPI", "Postgres", "SQLAlchemy"]}
               link="https://github.com/trevor-dev-johnson/taskforge"
@@ -138,9 +141,9 @@ export default function Home() {
               title="Pingr Monitoring"
               description="Asynchronous uptime monitor that performs scheduled health checks without blocking. Persists state and avoids duplicate alerts while keeping the system simple and reliable."
               specs={[
-                { label: "Concurrency", value: "Asyncio + Httpx" },
-                { label: "Scheduling", value: "Interval-Based Checks" },
-                { label: "State", value: "Lightweight Persistence" },
+                { label: "Focus", value: "High-Concurrency Network IO" },
+                { label: "Execution", value: "Async Event Loop" },
+                { label: "State", value: "Lightweight Local Persistence" },
               ]}
               tech={["Python", "Asyncio", "SQLite"]}
               link="https://github.com/trevor-dev-johnson/pingr"
@@ -152,9 +155,9 @@ export default function Home() {
               title="Stateless Crawler"
               description="Automation pipeline that fetches job listings, deduplicates results, and persists them safely. Designed for idempotent runs using GitHub Actions as the execution environment."
               specs={[
-                { label: "Runner", value: "GitHub Actions" },
-                { label: "Behavior", value: "Idempotent Processing" },
-                { label: "Storage", value: "Structured JSON" },
+                { label: "Focus", value: "Idempotent Data Pipelines" },
+                { label: "Execution", value: "Scheduled CI Jobs" },
+                { label: "State", value: "Structured Artifact Storage" },
               ]}
               tech={["Python", "GitHub Actions", "JSON"]}
               link="https://github.com/trevor-dev-johnson/python-job-monitor"
