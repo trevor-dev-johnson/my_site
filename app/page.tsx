@@ -1,3 +1,4 @@
+import React from "react";
 import {
   FaGithub,
   FaLinkedin,
@@ -5,296 +6,252 @@ import {
   FaTerminal,
   FaCode,
   FaCheckCircle,
+  FaChevronRight,
+  FaEnvelope,
+  FaFileAlt,
 } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
 
-type ProjectSpec = {
-  label: string;
-  value: string;
-};
-
-type ProjectProps = {
-  method: "SERVICE" | "ASYNC" | "CRON";
-  path: string;
+interface ProjectRowProps {
   title: string;
-  description: string;
-  specs: ProjectSpec[];
-  tech: string[];
+  path: string;
+  method: "SERVICE" | "ASYNC" | "CRON";
   link: string;
-};
+  tech: string;
+  description: string;
+}
+
+interface StackCardProps {
+  icon: React.ReactNode;
+  title: string;
+  list: string;
+}
+
+interface SocialIconProps {
+  href: string;
+  icon: React.ReactNode;
+  label?: string;
+}
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-neutral-950 text-neutral-100 selection:bg-emerald-500/30">
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(255,255,255,0.08),transparent_60%)]" />
-        <div className="absolute inset-0 opacity-[0.12] mix-blend-overlay [background-image:url('https://grainy-gradients.vercel.app/noise.png')]" />
+    <main className="min-h-screen bg-[#0a0a0a] text-neutral-300 selection:bg-emerald-500/30 font-sans pb-32">
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-emerald-500/5 blur-[120px] rounded-full" />
+        <div className="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.png')] opacity-[0.15] mix-blend-overlay" />
       </div>
 
-      <div className="relative z-10 max-w-3xl mx-auto px-6 space-y-32 pb-24">
-        <section className="pt-32 space-y-10">
-          <div className="space-y-6">
-            {" "}
-            <h1 className="text-5xl sm:text-7xl font-bold tracking-tighter text-white">
+      <div className="relative z-10 max-w-xl mx-auto px-4 pt-16 space-y-4">
+        <section className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-mono mb-6 animate-pulse">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+            AVAILABLE FOR NEW ROLES
+          </div>
+
+          <div className="w-20 h-20 bg-linear-to-br from-neutral-800 to-neutral-950 rounded-2xl mx-auto border border-neutral-800 flex items-center justify-center shadow-2xl mb-6">
+            <FaTerminal size={32} className="text-emerald-500" />
+          </div>
+
+          <div className="space-y-1 mb-4">
+            <h1 className="text-3xl font-bold text-white tracking-tight">
               Trevor Johnson
             </h1>
-            <p className="text-neutral-400 text-lg sm:text-xl leading-relaxed max-w-xl">
-              Backend engineer specializing in{" "}
-              <span className="text-neutral-200 italic font-medium">
-                Python
-              </span>{" "}
-              and{" "}
-              <span className="text-neutral-200 font-medium">
-                APIs & Backend Systems
-              </span>
-              . Focused on building reliable services, clear architecture, and
-              code that’s easy to reason about.
+            <p className="text-neutral-500 font-mono text-xs font-bold uppercase tracking-widest">
+              Backend Engineer
             </p>
           </div>
 
-          <div className="flex items-center gap-5">
-            <SocialLink
-              href="https://github.com/trevor-dev-johnson"
-              ariaLabel="GitHub"
-              icon={<FaGithub size={22} />}
-            />
-            <SocialLink
-              href="https://www.linkedin.com/in/trevor-johnson-dev/"
-              ariaLabel="LinkedIn"
-              icon={<FaLinkedin size={22} />}
-            />
-            <SocialLink
-              href="https://x.com/whizzkee"
-              ariaLabel="X"
-              icon={<FaXTwitter size={22} />}
-            />
-            <div className="h-4 w-px bg-neutral-800 mx-1" />
-            <a
-              href="/resume.pdf"
-              className="text-xs font-mono tracking-widest text-neutral-500 hover:text-emerald-400 transition-colors uppercase"
-            >
-              Resume
-            </a>
+          <div className="flex flex-wrap justify-center gap-2 mb-6 max-w-sm mx-auto">
+            {["Python", "FastAPI", "Distributed Systems", "SQLAlchemy"].map(
+              (tech) => (
+                <span
+                  key={tech}
+                  className="px-2 py-1 rounded-md bg-neutral-900/50 border border-neutral-800 text-[10px] font-mono text-neutral-500"
+                >
+                  {tech}
+                </span>
+              )
+            )}
           </div>
+
+          <p className="text-sm text-neutral-400 max-w-75 mx-auto leading-relaxed">
+            I build robust backend systems with a focus on
+            <span className="text-neutral-200"> architectural integrity </span>
+            and scalable data patterns.
+          </p>
         </section>
 
-        <section className="space-y-8">
-          <h2 className="text-xs font-mono uppercase tracking-widest text-neutral-500 flex items-center gap-2">
-            <span className="h-px w-8 bg-neutral-800" /> technical stack
-          </h2>
+        <div className="space-y-3">
+          <div className="flex justify-between items-end px-2">
+            <h2 className="text-[10px] font-mono text-neutral-600 uppercase tracking-[0.2em]">
+              Selected Work
+            </h2>
+            <span className="text-[9px] font-mono text-neutral-700 italic">
+              Click to view source & docs
+            </span>
+          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-10 gap-x-12">
-            <StackItem
-              icon={<FaTerminal size={18} />}
+          <ProjectRow
+            title="TaskForge Architecture"
+            path="/v1/taskforge"
+            method="SERVICE"
+            link="https://github.com/trevor-dev-johnson/taskforge"
+            tech="FastAPI • Postgres"
+            description="Clean architecture implementation with repository patterns."
+          />
+
+          <ProjectRow
+            title="Pingr Monitoring"
+            path="/v1/pingr"
+            method="ASYNC"
+            link="https://github.com/trevor-dev-johnson/pingr"
+            tech="Asyncio • SQLite"
+            description="High-concurrency uptime engine using non-blocking I/O."
+          />
+
+          <ProjectRow
+            title="Stateless Crawler"
+            path="/v1/data-pipeline"
+            method="CRON"
+            link="https://github.com/trevor-dev-johnson/python-job-monitor"
+            tech="Python • GH Actions"
+            description="Automated ETL pipeline with idempotent processing."
+          />
+        </div>
+
+        <div className="pt-8 space-y-3">
+          <h2 className="text-[10px] font-mono text-neutral-600 uppercase tracking-[0.2em] pl-2">
+            System Capabilities
+          </h2>
+          <div className="grid grid-cols-2 gap-3">
+            <StackCard
+              icon={<FaCode />}
               title="Languages"
-              list="Python, TypeScript, Rust (learning)"
+              list="Python, TypeScript, Rust"
             />
-
-            <StackItem
-              icon={<FaDatabase size={18} />}
-              title="Databases & Storage"
-              list="PostgreSQL, SQLAlchemy, Alembic — exploring Redis
-"
+            <StackCard
+              icon={<FaDatabase />}
+              title="Storage"
+              list="Postgres, Redis, SQLite"
             />
-
-            <StackItem
-              icon={<FaCode size={18} />}
+            <StackCard
+              icon={<FaTerminal />}
               title="Backend"
-              list="FastAPI, RESTful Design, Pydantic, Dependency Injection"
+              list="FastAPI, Asyncio, Pydantic"
             />
-
-            <StackItem
-              icon={<FaCheckCircle size={18} />}
+            <StackCard
+              icon={<FaCheckCircle />}
               title="Reliability"
-              list="Pytest, Docker, GitHub Actions, Structured Logging
-"
+              list="Pytest, Docker, CI/CD"
             />
           </div>
-        </section>
+        </div>
 
-        <section className="space-y-16">
-          <h2 className="text-xs font-mono uppercase tracking-widest text-neutral-500 flex items-center gap-2">
-            <span className="h-px w-8 bg-neutral-800" /> projects
-          </h2>
-
-          <div className="space-y-24">
-            <Project
-              method="SERVICE"
-              path="/v1/taskforge"
-              title="TaskForge Architecture"
-              description="Backend designed around clear separation of concerns. Business logic is isolated from storage through repositories, with centralized validation and consistent error handling."
-              specs={[
-                {
-                  label: "Focus",
-                  value: "Clean Architecture & Domain Boundaries",
-                },
-                { label: "Execution", value: "Synchronous API Services" },
-                { label: "State", value: "Relational Persistence" },
-              ]}
-              tech={["FastAPI", "Postgres", "SQLAlchemy"]}
-              link="https://github.com/trevor-dev-johnson/taskforge"
-            />
-
-            <Project
-              method="ASYNC"
-              path="/v1/pingr"
-              title="Pingr Monitoring"
-              description="Asynchronous uptime monitor that performs scheduled health checks without blocking. Persists state and avoids duplicate alerts while keeping the system simple and reliable."
-              specs={[
-                { label: "Focus", value: "High-Concurrency Network IO" },
-                { label: "Execution", value: "Async Event Loop" },
-                { label: "State", value: "Lightweight Local Persistence" },
-              ]}
-              tech={["Python", "Asyncio", "SQLite"]}
-              link="https://github.com/trevor-dev-johnson/pingr"
-            />
-
-            <Project
-              method="CRON"
-              path="/v1/data-pipeline"
-              title="Stateless Crawler"
-              description="Automation pipeline that fetches job listings, deduplicates results, and persists them safely. Designed for idempotent runs using GitHub Actions as the execution environment."
-              specs={[
-                { label: "Focus", value: "Idempotent Data Pipelines" },
-                { label: "Execution", value: "Scheduled CI Jobs" },
-                { label: "State", value: "Structured Artifact Storage" },
-              ]}
-              tech={["Python", "GitHub Actions", "JSON"]}
-              link="https://github.com/trevor-dev-johnson/python-job-monitor"
-            />
-          </div>
-        </section>
-
-        <footer className="pt-12 border-t border-neutral-900 flex flex-col sm:flex-row justify-between items-center gap-4 text-neutral-600 text-[10px] font-mono tracking-widest uppercase">
-          <div className="flex items-center gap-2">
-            <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>Connection Established: Open for Roles</span>
-          </div>
-          <p>© {new Date().getFullYear()} Trevor Johnson</p>
+        <footer className="fixed bottom-6 left-1/2 -translate-x-1/2 w-max px-6 py-3 bg-neutral-900/90 backdrop-blur-xl border border-neutral-800 rounded-full flex items-center gap-6 shadow-2xl">
+          <SocialIcon
+            href="https://github.com/trevor-dev-johnson"
+            icon={<FaGithub size={20} />}
+            label="GitHub"
+          />
+          <SocialIcon
+            href="https://www.linkedin.com/in/trevor-johnson-dev/"
+            icon={<FaLinkedin size={20} />}
+            label="LinkedIn"
+          />
+          <div className="h-4 w-px bg-neutral-700" />
+          <a
+            href="mailto:tjohnsonace@outlook.com"
+            className="text-neutral-500 hover:text-emerald-400 transition-colors flex items-center gap-2"
+          >
+            <FaEnvelope size={18} />
+            <span className="text-[10px] font-mono font-bold uppercase hidden sm:inline">
+              Contact
+            </span>
+          </a>
+          <div className="h-4 w-px bg-neutral-700" />
+          <a
+            href="/resume.pdf"
+            className="text-neutral-500 hover:text-white transition-colors"
+          >
+            <FaFileAlt size={18} />
+          </a>
         </footer>
       </div>
     </main>
   );
 }
 
-function StackItem({
-  icon,
+function ProjectRow({
   title,
-  list,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  list: string;
-}) {
-  return (
-    <div className="space-y-3">
-      <div className="flex items-center gap-2 text-neutral-200">
-        <span className="text-emerald-500/50">{icon}</span>
-        <h3 className="text-sm font-semibold font-mono tracking-tight underline underline-offset-4 decoration-neutral-800">
-          {title}
-        </h3>
-      </div>
-      <p className="text-sm text-neutral-500 leading-relaxed font-sans">
-        {list}
-      </p>
-    </div>
-  );
-}
-
-function Project({
-  method,
   path,
-  title,
-  description,
-  specs,
-  tech,
+  method,
   link,
-}: ProjectProps) {
+  tech,
+  description,
+}: ProjectRowProps) {
   return (
-    <div className="group grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-      <div className="md:col-span-4 space-y-4">
-        <div className="flex items-center gap-3 font-mono text-[11px]">
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex items-center justify-between p-4 bg-neutral-900/40 border border-neutral-800/50 rounded-2xl hover:bg-neutral-800/60 hover:border-emerald-500/30 transition-all duration-300"
+    >
+      <div className="flex flex-col gap-1 text-left">
+        <div className="flex items-center gap-2">
           <span
-            className={`px-2 py-0.5 rounded ${
+            className={`text-[9px] font-bold px-1.5 py-0.5 rounded border ${
               method === "SERVICE"
-                ? "bg-emerald-500/10 text-emerald-400"
+                ? "text-emerald-400 border-emerald-400/20"
                 : method === "ASYNC"
-                ? "bg-blue-500/10 text-blue-400"
-                : "bg-amber-500/10 text-amber-400"
-            } border border-current/20 font-bold`}
+                  ? "text-blue-400 border-blue-400/20"
+                  : "text-amber-400 border-amber-400/20"
+            }`}
           >
             {method}
           </span>
-          <span className="text-neutral-600 tracking-tighter">{path}</span>
+          <span className="text-[10px] font-mono text-neutral-600">{path}</span>
         </div>
-
-        <h3 className="text-2xl font-bold text-neutral-100 group-hover:text-emerald-400 transition-colors">
+        <h3 className="text-white font-semibold group-hover:text-emerald-400 transition-colors">
           {title}
         </h3>
-
-        <div className="flex gap-4">
-          <a
-            href={link}
-            target="_blank"
-            className="flex items-center gap-2 text-xs font-mono text-neutral-500 hover:text-white transition-colors"
-          >
-            <FaGithub /> SOURCE_CODE
-          </a>
-        </div>
-      </div>
-
-      <div className="md:col-span-8 bg-neutral-900/40 border border-neutral-800/50 rounded-lg p-6 space-y-6 hover:border-neutral-700 transition-colors">
-        <p className="text-neutral-400 text-sm leading-relaxed font-sans">
+        <p className="text-[11px] text-neutral-400 line-clamp-1 group-hover:text-neutral-300 transition-colors">
           {description}
         </p>
-
-        <div className="grid grid-cols-2 gap-4 border-t border-neutral-800 pt-6">
-          {specs.map((spec) => (
-            <div key={spec.label}>
-              <p className="text-[10px] font-mono text-neutral-600 uppercase tracking-tighter">
-                {spec.label}
-              </p>
-              <p className="text-xs text-neutral-300 font-medium">
-                {spec.value}
-              </p>
-            </div>
-          ))}
-
-          <div>
-            <p className="text-[10px] font-mono text-neutral-600 uppercase tracking-tighter">
-              Stack
-            </p>
-            <p className="text-xs text-neutral-300 font-medium">
-              {tech.join(", ")}
-            </p>
-          </div>
-        </div>
+        <p className="text-[10px] text-neutral-600 font-mono uppercase mt-1">
+          {tech}
+        </p>
       </div>
+      <FaChevronRight
+        size={14}
+        className="text-neutral-700 group-hover:text-emerald-500 group-hover:translate-x-1 transition-all"
+      />
+    </a>
+  );
+}
+
+function StackCard({ icon, title, list }: StackCardProps) {
+  return (
+    <div className="p-4 bg-neutral-900/20 border border-neutral-900 rounded-2xl space-y-2 text-left">
+      <div className="flex items-center gap-2 text-emerald-500">
+        {icon}
+        <span className="text-[10px] font-mono font-bold text-neutral-400 uppercase tracking-widest">
+          {title}
+        </span>
+      </div>
+      <p className="text-xs text-neutral-500 leading-tight">{list}</p>
     </div>
   );
 }
 
-function SocialLink({
-  href,
-  icon,
-  ariaLabel,
-}: {
-  href: string;
-  icon: React.ReactNode;
-  ariaLabel: string;
-}) {
+function SocialIcon({ href, icon, label }: SocialIconProps) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={ariaLabel}
-      className="group relative text-neutral-400 hover:text-white transition-all hover:-translate-y-0.5"
+      className="text-neutral-500 hover:text-white transition-colors"
+      aria-label={label}
     >
       {icon}
-      <span className="pointer-events-none absolute -bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-neutral-900 px-2 py-1 text-[10px] text-neutral-200 opacity-0 transition-all group-hover:opacity-100 border border-neutral-800 font-mono">
-        {ariaLabel}
-      </span>
     </a>
   );
 }
